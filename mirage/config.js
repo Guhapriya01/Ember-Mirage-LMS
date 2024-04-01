@@ -34,11 +34,10 @@ function routes() {
 
   this.get('/books', (schema, request) => {
     return schema.books.all();
-  });
+  },{timing:3000});
 
   this.get('/books/:name', (schema, request) => {
-    let name = request.params.name;
-    return schema.books.findBy({ author: name });
+    return schema.books.findBy({ author: request.params.name });
   });
 
   this.post(
