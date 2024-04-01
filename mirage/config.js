@@ -35,7 +35,7 @@ function routes() {
 
   this.get('/books', (schema, request) => {
     return schema.books.all();
-  },{timing:3000});
+  },{timing:2000});
 
   this.get('/books/:name', (schema, request) => {
     return schema.books.findBy({ author: request.params.name });
