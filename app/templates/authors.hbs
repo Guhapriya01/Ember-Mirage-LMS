@@ -1,0 +1,11 @@
+{{page-title "Authors"}}
+<div align="center">
+    {{#each this.model as |author|}}
+        <div class="box-view">
+          {{log author.relationships.books}}
+            <h3>{{author.attributes.name}}</h3>
+            <p>Books Written : {{get author.attributes "num-books-written"}}</p>
+        </div>
+    {{/each}}
+</div>
+{{outlet}}

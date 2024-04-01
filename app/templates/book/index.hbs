@@ -1,0 +1,40 @@
+<div align="center" class="card">
+  <label for="name">Name :</label>
+  <Input id="name" @value={{this.name}}/>
+
+  <label for="author">Author :</label>
+  <Input id="author" @value={{this.author}}/>
+
+  <label for="publisher">Publisher :</label>
+  <Input id="publisher" @value={{this.publisher}}/>
+
+  <button type="button" {{on "click" this.addBook}}>Add Book</button>
+</div>
+
+{{!-- Find By Author name --}}
+{{!-- <div align="center" class="card">
+  <label for="search">Search By Author </label>
+  <Input id="search" @value={{this.searchTerm}}/>
+  <button type="button" {{on "click" this.searchBook}}>Search</button>
+</div> --}}
+
+<div align="center">
+    {{#each this.model as |b|}}
+        <div class="box-view">
+            <img class="imgBook" src={{b.attributes.image}}>
+            <h3>{{b.attributes.name}}</h3>
+            <p>Author : {{b.attributes.author}}</p>
+            
+            {{!-- {{#if (get b.attributes "is-published")}} --}}
+              <p>Publisher : {{b.attributes.publisher}}</p>
+              {{!-- <p>Published Date : {{get b.attributes "published-at"}}</p> --}}
+            {{!-- {{else}}
+              <p>Not published</p>
+            {{/if}} --}}
+            <LinkTo @route="book.edit" @model={{b}}>Update</LinkTo>
+            <button type="button" {{on "click" (fn this.removeBook b.id)}}>Remove</button>
+        </div>
+    {{else}}
+      <p>No Books Found!</p>
+    {{/each}}
+</div>
